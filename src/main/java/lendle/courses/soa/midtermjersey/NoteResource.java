@@ -23,23 +23,35 @@ import javax.ws.rs.core.MediaType;
 public class NoteResource {
     //2. (18%) return the corresponding note with the given id
     //remember to add the required annotations
-    public Note getNote(long id){
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("{id}")
+    public Note getNote(@PathParam("id") long id){
+        return NoteRepository.getNote(id);
     }
     
     //3. (18%) remove the corresponding note with the given id
     //remember to add the required annotations
+    @DELETE
     @Path("{id}")
     public void removeNote(@PathParam("id") long id){
+        NoteRepository.removeNote(id);
     }
     
     //4. (18%) add a new note to the repository
     //remember to add the required annotations
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     public void addNote(Note note){
-        
+        NoteRepository.addNote(note);
     }
     
     //5. (18%) update the corresponding note
     //remember to add the required annotations
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
     public void updateNote(Note note){
+        NoteRepository.removeNote(note.getId());
+        NoteRepository.addNote(note);
     }
 }
