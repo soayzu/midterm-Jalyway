@@ -51,7 +51,6 @@ public class NoteResource {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public void updateNote(Note note){
-        NoteRepository.removeNote(note.getId());
-        NoteRepository.addNote(note);
+        NoteRepository.updateNote(note);
     }
 }
